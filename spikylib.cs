@@ -31,9 +31,14 @@ using System.Threading.Tasks;
 ////                                     (!) REGULAR EXPRESSIONS                                       ///
 ////                                                                                                   ///
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-static void print(string text)
+static void print(dynamic text)
 {
     Console.WriteLine(text);
+}
+
+static dynamic getline()
+{
+    return Console.ReadLine();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +46,7 @@ static void print(string text)
 ////                                      (!) CUSTOM EXPRESSIONS                                       ///
 ////                                                                                                   ///
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-static void printc(string text, int color)
+static void printc(dynamic text, int color)
 {
     if (color == 0)
     {
