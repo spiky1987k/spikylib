@@ -25,73 +25,78 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-////                                                                                                   ///
-////                                     (!) REGULAR EXPRESSIONS                                       ///
-////                                                                                                   ///
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-static void print(dynamic text)
+namespace spikylib
 {
-    Console.WriteLine(text);
-}
+    public class spikylib
+    {
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////                                                                                                   ///
+        ////                                     (!) REGULAR EXPRESSIONS                                       ///
+        ////                                                                                                   ///
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public void print(dynamic text)
+        {
+            Console.WriteLine(text);
+        }
 
-static dynamic getline()
-{
-    return Console.ReadLine();
-}
+        public dynamic getline()
+        {
+            return Console.ReadLine();
+        }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-////                                                                                                   ///
-////                                      (!) CUSTOM EXPRESSIONS                                       ///
-////                                                                                                   ///
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-static void printc(dynamic text, int color)
-{
-    if (color == 0)
-    {
-        Console.ForegroundColor = ConsoleColor.White;
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////                                                                                                   ///
+        ////                                      (!) CUSTOM EXPRESSIONS                                       ///
+        ////                                                                                                   ///
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public void printc(dynamic text, int color)
+        {
+            if (color == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            else if (color == 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            else if (color == 2)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
+            else if (color == 3)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+            }
+            else if (color == 4)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+            }
+            else if (color == 5)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+            }
+            else if (color == 6)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+            }
+            else if (color == 7)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            }
+            else if (color == 8)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+            }
+            else if (color == 9)
+            {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+            }
+            else if (color == 10)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            }
+            Console.WriteLine(text);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
     }
-    else if (color == 1)
-    {
-        Console.ForegroundColor = ConsoleColor.Red;
-    }
-    else if (color == 2)
-    {
-        Console.ForegroundColor = ConsoleColor.Green;
-    }
-    else if (color == 3)
-    {
-        Console.ForegroundColor = ConsoleColor.Blue;
-    }
-    else if (color == 4)
-    {
-        Console.ForegroundColor = ConsoleColor.DarkRed;
-    }
-    else if (color == 5)
-    {
-        Console.ForegroundColor = ConsoleColor.DarkGreen;
-    }
-    else if (color == 6)
-    {
-        Console.ForegroundColor = ConsoleColor.DarkBlue;
-    }
-    else if (color == 7)
-    {
-        Console.ForegroundColor = ConsoleColor.Yellow;
-    }
-    else if (color == 8)
-    {
-        Console.ForegroundColor = ConsoleColor.DarkYellow;
-    }
-    else if (color == 9)
-    {
-        Console.ForegroundColor = ConsoleColor.Magenta;
-    }
-    else if (color == 10)
-    {
-        Console.ForegroundColor = ConsoleColor.DarkMagenta;
-    }
-    Console.WriteLine(text);
-    Console.ForegroundColor = ConsoleColor.White;
 }
