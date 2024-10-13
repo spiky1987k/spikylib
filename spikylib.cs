@@ -9,21 +9,12 @@
 //                                   |_|               |___/           
 // 
 //                                          (c) 2024 spiky1987k
-//                                        LAST UPDATED: 12/10/2024
-//                                                v.1.0.0
+//                                        LAST UPDATED: 13/10/2024
+//                                                v.1.1.0
 //
-// Repository: https://github.com/spiky1987k/spikylib
+// GitHub Repository: https://github.com/spiky1987k/spikylib
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-////                                                                                                   ///
-////                                           (!) IMPORTS                                             ///
-////                                                                                                   ///
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
 
 namespace spikylib
 {
@@ -34,7 +25,7 @@ namespace spikylib
         ////                                     (!) REGULAR EXPRESSIONS                                       ///
         ////                                                                                                   ///
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void print(dynamic text)
+        public void printf(dynamic text)
         {
             Console.WriteLine(text);
         }
@@ -42,6 +33,52 @@ namespace spikylib
         public dynamic getline()
         {
             return Console.ReadLine();
+        }
+
+        public void sleep(int ms)
+        {
+            System.Threading.Thread.Sleep(ms);
+        }
+
+        public void system(string type)
+        {
+            if (type == "PAUSE")
+            {
+                printf("Press any key to continue...");
+                Console.ReadKey();
+            }
+            else
+            {
+                string err_msg = "Type " + type +  " does not exist on 'slib.system'";
+                error(err_msg);
+            }
+        }
+
+        public void Beep(int hz, int ms)
+        {
+            Console.Beep(hz, ms);
+        }
+
+        public void ignore(int chars)
+        {
+            Console.ReadKey();
+
+            chars = chars - 1;
+
+            if (chars > 0)
+            {
+                for (int i = 0; i < chars; i++)
+                {
+                    Console.ReadKey();
+                }
+
+                clear();
+            }
+            else
+            {
+                string msg = "Incorrect arguments given for 'slib.ignore' (given " + chars + "). Are you trying to use 'slib.system' instead?";
+                error(msg);
+            }
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,6 +134,82 @@ namespace spikylib
             }
             Console.WriteLine(text);
             Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public void lclear(int lines)
+        {
+            if (lines > 0)
+            {
+                for (int i = 0; i < lines; i++)
+                {
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.Write(new string(' ', Console.WindowWidth));
+                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                }
+            }
+            else
+            {
+                string msg = "Incorrect arguments given for 'slib.lclear' (given " + lines + "). Are you trying to use 'slib.clear' instead?";
+                error(msg);
+            }
+        }
+
+        public void clear()
+        {
+            Console.Clear();
+        }
+
+        public bool isStrNum(string value)
+        {
+            return int.TryParse(value, out int n);
+        }
+
+        public bool isStrDecNum(string value)
+        {
+            return float.TryParse(value, out float n);
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////                                                                                                   ///
+        ////                                            (!) SLIB                                               ///
+        ////                                                                                                   ///
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        private void error(string err)
+        {
+            string msg = "[!] slib: " + err + " :(";
+            printc(msg, 1);
+        }
+
+        private void notify(string note)
+        {
+            string msg = "[!] slib: " + note + " :(";
+            printc(msg, 7);
+        }
+
+        public void updateCheck()
+        {
+            string currentVersion = "1.0.1";
+
+            var paste = "https://pastebin.com/raw/bSXu0vWR";
+            string version = "";
+            int i = 0;
+            var client = new WebClient();
+            using (var stream = client.OpenRead(paste))
+            using (var reader = new StreamReader(stream))
+            {
+                version = reader.ReadLine();
+            }
+
+            if (version != currentVersion)
+            {
+                string msg = "There is a newer version of slib available (" + version + "). You are currently on " + currentVersion;
+                error(msg);
+            }
+            else if (version == currentVersion)
+            {
+                string msg = "You are up to date with slib! Current version: v" + version;
+                notify(msg);
+            }
         }
     }
 }
